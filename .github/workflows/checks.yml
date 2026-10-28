@@ -1,4 +1,4 @@
-name: Reference implementation checks
+name: Method implementation checks
 on: [push, pull_request]
 jobs:
   cpu:
@@ -12,6 +12,6 @@ jobs:
       - run: python -m pip install torch==2.3.1 --index-url https://download.pytorch.org/whl/cpu
       - run: python -m pip install -e '.[learning,sumo,test]'
       - run: python -m pytest -q
-      - run: rc-shapleynet validate examples/figure2.json
-      - run: rc-shapleynet audit examples/figure2.json
+      - run: rc-shapleynet validate examples/constructed_recovery.json
+      - run: rc-shapleynet audit examples/constructed_recovery.json
       - run: rc-shapleynet statistics --list-families

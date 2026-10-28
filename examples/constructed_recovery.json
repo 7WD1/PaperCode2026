@@ -1,6 +1,6 @@
 {
   "constructed": true,
-  "description": "Deterministic Figure 2 mechanism check. Energy units are represented in kWh. Both chargers have already reached the EV at the service epoch; no traffic or benchmark performance is asserted.",
+  "description": "Constructed two-route recovery check. Energy units are represented in kWh. Both chargers have already reached the EV at the service epoch; no traffic or benchmark performance is asserted.",
   "scenario": {
     "domain": "EV",
     "locations": [
@@ -61,7 +61,7 @@
     "horizon": 8,
     "step_seconds": 3600,
     "simulation_seed": 10001,
-    "scenario_id": "constructed:figure2",
+    "scenario_id": "constructed:recovery",
     "tasks": [],
     "road_distance": {},
     "road_slots": {},

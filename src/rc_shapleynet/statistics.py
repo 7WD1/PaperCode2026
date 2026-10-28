@@ -4,7 +4,7 @@ Pair keys: scenario_id, simulation_seed, training_seed. Training seeds are
 repeated measurements. Wilcoxon and the preserved sign-flip permutation test
 use one training-seed mean per scenario. A crossed bootstrap resamples scenario
 and training-seed axes independently. No runs, W, or CIs are reconstructed from
-aggregate tables. See docs/STATISTICS.md for the input contract.
+aggregate tables. The CLI accepts explicit pairing and comparison families.
 """
 from pathlib import Path
 import argparse

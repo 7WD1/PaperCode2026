@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_validate_and_exact_audit_example(tmp_path, capsys):
-    example = ROOT/"examples"/"figure2.json"
+    example = ROOT/"examples"/"constructed_recovery.json"
     assert main(["validate", str(example)]) == 0
     validation = json.loads(capsys.readouterr().out)
     assert validation["feasible"]
@@ -30,7 +30,7 @@ def test_validate_and_exact_audit_example(tmp_path, capsys):
 
 
 def test_exact_physical_recovery_respects_shared_online_budget():
-    payload = json.loads((ROOT/"examples"/"figure2.json").read_text())
+    payload = json.loads((ROOT/"examples"/"constructed_recovery.json").read_text())
     scenario, plan = scenario_from_dict(payload["scenario"]), plan_from_dict(payload["plan"])
     actual_calls = []
     def counted(s, p):

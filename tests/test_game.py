@@ -59,7 +59,7 @@ def test_sharp_factor_and_three_term_bound_including_missing_pair():
     assert audit['tail']==4 and audit['actual']<=audit['bound']+1e-12
 
 
-def test_physical_fixed_game_and_recovery_share_from_figure2():
+def test_physical_fixed_game_and_recovery_share_from_constructed_routes():
     s=Scenario('EV',(Location('r',0,0),),
       (Charger('A','r',7,7,1,1,receiver_efficiency=1),Charger('B','r',4,4,1,1,receiver_efficiency=1)),
       (Recipient('r','r',0,8,8,0,8),),8,step_seconds=3600)

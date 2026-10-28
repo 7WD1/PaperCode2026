@@ -229,7 +229,7 @@ def test_synthetic_partitions_and_geometry_are_disjoint_and_reproducible():
     assert evaluate(scenario, Plan(())).feasible
 
 
-@pytest.mark.parametrize("name", ["figure2", "wrsn_small"])
+@pytest.mark.parametrize("name", ["constructed_recovery", "wrsn_small"])
 def test_constructed_inputs_roundtrip_and_pass_the_full_physical_checker(name):
     root = Path(__file__).resolve().parents[1]
     payload = json.loads((root/"examples"/f"{name}.json").read_text(encoding="utf-8"))

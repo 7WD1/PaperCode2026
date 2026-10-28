@@ -12,12 +12,3 @@ private_data/
 *.pth
 .env
 .env.*
-paper_artifacts/figures/*.pdf
-paper_artifacts/figures/*.png
-paper_artifacts/figures/toy_values.csv
-paper_artifacts/data/theory/
-paper_artifacts/data/theory_surfaces/
-paper_artifacts/data/urbanev_audit/
-paper_artifacts/data/case_comparison_qa/
-paper_artifacts/data/diagram_export_audit.json
-paper_artifacts/data/toy_checks.json
