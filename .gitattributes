@@ -1,3 +1,1 @@
 * text=auto eol=lf
-# Preserve the exact licensed input bytes checked by the public manifest.
-paper_artifacts/data/external/urbanev/* -text
