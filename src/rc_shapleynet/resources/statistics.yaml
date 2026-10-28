@@ -1,0 +1,848 @@
+schema_version: 1
+data_kind: actual_run_logs
+pair_keys:
+- scenario_id
+- simulation_seed
+- training_seed
+selected_families: []
+defaults:
+  subject: RC-ShapleyNet
+  expected_scenarios: 100
+  expected_training_seeds: 5
+  bootstrap_resamples: 2000
+  permutations: 10000
+  confidence: 0.95
+  alpha: 0.05
+  random_seed: 20261028
+  difference_decimals: null
+  wilcoxon_method: approx
+families:
+- id: E01_std
+  expected_size: 6
+  members:
+  - id: E01_std_rate0.6_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.6_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_std_rate0.6_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.6_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_std_rate0.9_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.9_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_std_rate0.9_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.9_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_std_rate1.2_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate1.2_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_std_rate1.2_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate1.2_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E01_alns
+  expected_size: 6
+  members:
+  - id: E01_alns_rate0.6_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.6_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: ALNS-full
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_alns_rate0.6_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.6_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: ALNS-full
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_alns_rate0.9_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.9_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: ALNS-full
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_alns_rate0.9_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.9_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: ALNS-full
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_alns_rate1.2_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate1.2_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: ALNS-full
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_alns_rate1.2_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate1.2_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: ALNS-full
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E01_adap
+  expected_size: 6
+  members:
+  - id: E01_adap_rate0.6_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.6_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: AdapMCS
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_adap_rate0.6_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.6_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: AdapMCS
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_adap_rate0.9_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.9_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: AdapMCS
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_adap_rate0.9_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate0.9_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: AdapMCS
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_adap_rate1.2_def
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate1.2_def
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: AdapMCS
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E01_adap_rate1.2_low
+    kind: paired
+    context:
+      experiment_id: E01
+      condition_id: rate1.2_low
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: AdapMCS
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E02_std
+  expected_size: 9
+  members:
+  - id: E02_std_load0.6_uniform
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.6_uniform
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load0.6_clustered
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.6_clustered
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load0.6_critical_relay
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.6_critical_relay
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load0.9_uniform
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.9_uniform
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load0.9_clustered
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.9_clustered
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load0.9_critical_relay
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.9_critical_relay
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load1.2_uniform
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load1.2_uniform
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load1.2_clustered
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load1.2_clustered
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_std_load1.2_critical_relay
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load1.2_critical_relay
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E02_gdqn
+  expected_size: 9
+  members:
+  - id: E02_gdqn_load0.6_uniform
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.6_uniform
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load0.6_clustered
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.6_clustered
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load0.6_critical_relay
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.6_critical_relay
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load0.9_uniform
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.9_uniform
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load0.9_clustered
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.9_clustered
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load0.9_critical_relay
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load0.9_critical_relay
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load1.2_uniform
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load1.2_uniform
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load1.2_clustered
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load1.2_clustered
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E02_gdqn_load1.2_critical_relay
+    kind: paired
+    context:
+      experiment_id: E02
+      condition_id: load1.2_critical_relay
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: GraphDQN
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E11_interaction
+  expected_size: 2
+  notes: Four-cell DID. The paired grid is formed jointly before crossed bootstrap
+    or scenario sign flips. No aggregate conditional-contrast CI or p is reused.
+  members:
+  - id: E11_interaction_EV
+    kind: linear_contrast
+    context:
+      experiment_id: E11
+      condition_id: factorial
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    weights:
+      RC-interaction: 1.0
+      RC-independent: -1.0
+      Std-interaction: -1.0
+      Std-independent: 1.0
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E11_interaction_WRSN
+    kind: linear_contrast
+    context:
+      experiment_id: E11
+      condition_id: factorial
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    weights:
+      RC-interaction: 1.0
+      RC-independent: -1.0
+      Std-interaction: -1.0
+      Std-independent: 1.0
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E11_main
+  expected_size: 2
+  notes: 'Historical family name: conditional RC-interaction minus Std-interaction,
+    with the interaction neighborhood fixed. This is not an average factorial main
+    effect or the four-cell DID.'
+  members:
+  - id: E11_main_EV
+    kind: paired
+    context:
+      experiment_id: E11
+      condition_id: factorial
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-interaction
+    baseline: Std-interaction
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E11_main_WRSN
+    kind: paired
+    context:
+      experiment_id: E11
+      condition_id: factorial
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-interaction
+    baseline: Std-interaction
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E12_mech
+  expected_size: 12
+  notes: 'Fixed family: six replacement variants times two domains. Every placeholder
+    must be resolved before this family can run.'
+  members:
+  - id: E12_mech_EV_variant_1
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: RC-no-difficulty
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_EV_variant_2
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: RC-no-urgency
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_EV_variant_3
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: RC-shuffled-scores
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_EV_variant_4
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Global-fixed-weights
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_EV_variant_5
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Direct-recovery-priority
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_EV_variant_6
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: PASV-compatible
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_WRSN_variant_1
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: RC-no-difficulty
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_WRSN_variant_2
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: RC-no-urgency
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_WRSN_variant_3
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: RC-shuffled-scores
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_WRSN_variant_4
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Global-fixed-weights
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_WRSN_variant_5
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: Direct-recovery-priority
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E12_mech_WRSN_variant_6
+    kind: paired
+    context:
+      experiment_id: E12
+      condition_id: mechanism
+      domain: WRSN
+      profile: query_controlled
+      metric: coverage
+    subject: RC-ShapleyNet
+    baseline: PASV-compatible
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+- id: E15_rho
+  expected_size: 3
+  notes: Analyze matched raw attribution/service-loss scores with the correlation
+    command, then correct the complete three-subset family.
+  members:
+  - id: E15_rho_all
+    kind: crossed_spearman_difference
+    context:
+      experiment_id: E15
+      condition_id: all
+      domain: author_defined
+      profile: query_controlled
+      metric: spearman_rho_difference
+    notes: Dimensionless correlation difference, not a percentage-point service effect.
+    minimum_effect: null
+  - id: E15_rho_heterogeneous
+    kind: crossed_spearman_difference
+    context:
+      experiment_id: E15
+      condition_id: heterogeneous
+      domain: author_defined
+      profile: query_controlled
+      metric: spearman_rho_difference
+    notes: Dimensionless correlation difference, not a percentage-point service effect.
+    minimum_effect: null
+  - id: E15_rho_symmetric
+    kind: crossed_spearman_difference
+    context:
+      experiment_id: E15
+      condition_id: symmetric
+      domain: author_defined
+      profile: query_controlled
+      metric: spearman_rho_difference
+    notes: Dimensionless correlation difference, not a percentage-point service effect.
+    minimum_effect: null
+- id: E16_perturb
+  expected_size: 6
+  members:
+  - id: E16_perturb_zero
+    kind: paired
+    context:
+      experiment_id: E16
+      condition_id: zero
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E16_perturb_noise10_zero_mean
+    kind: paired
+    context:
+      experiment_id: E16
+      condition_id: noise10_zero_mean
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E16_perturb_noise20_zero_mean
+    kind: paired
+    context:
+      experiment_id: E16
+      condition_id: noise20_zero_mean
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E16_perturb_bias30
+    kind: paired
+    context:
+      experiment_id: E16
+      condition_id: bias30
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E16_perturb_single_robot_failure
+    kind: paired
+    context:
+      experiment_id: E16
+      condition_id: single_robot_failure
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate
+  - id: E16_perturb_joint_stress
+    kind: paired
+    context:
+      experiment_id: E16
+      condition_id: joint_stress
+      domain: EV
+      profile: query_controlled
+      metric: completion_rate
+    subject: RC-ShapleyNet
+    baseline: Std-Shapley
+    direction: higher
+    minimum_effect: 0.01
+    effect_unit: fraction_rate

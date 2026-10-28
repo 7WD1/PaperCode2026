@@ -1,0 +1,186 @@
+% Constructed EV setting: geometry is schematic, not a recorded trace.
+% A commits 4 units from 7 available and stays until slot 8.
+% B commits 4 from 4 available. Probes preserve retained commitments.
+\begin{tikzpicture}[x=1mm,y=1mm,>=Latex,
+ font=\sffamily\fontsize{9.5}{10.8}\selectfont,
+ arr/.style={->,line width=.9pt},
+ service/.style={->,densely dashed,line width=1.0pt},
+ note/.style={align=center,inner sep=.6mm},
+ small/.style={font=\sffamily\fontsize{9}{10.3}\selectfont,align=center,inner sep=.5mm},
+ title/.style={anchor=west,font=\sffamily\bfseries\fontsize{10}{11}\selectfont},
+ tag/.style={circle,fill=rcblue,text=white,font=\bfseries,inner sep=1.1mm},
+ charger/.pic={
+  \filldraw[fill=#1!12,draw=#1,line width=.8pt]
+   (-4.2,-2.8)--(4.2,-2.8)--(4.2,2.7)--(-4.2,2.7)--cycle;
+  \filldraw[fill=#1!26,draw=#1,line width=.65pt]
+   (-4.2,2.7)--(-2.5,4)--(5.9,4)--(4.2,2.7)--cycle;
+  \filldraw[fill=#1!20,draw=#1,line width=.65pt]
+   (4.2,-2.8)--(5.9,-1.5)--(5.9,4)--(4.2,2.7)--cycle;
+  \fill[rcgray] (-2.2,-2.8) circle[radius=.6mm];
+  \fill[rcgray] (2.5,-2.8) circle[radius=.6mm];},
+ ev/.pic={
+  \filldraw[fill=rcgreen!12,draw=rcgreen,line width=.8pt]
+   (-6,-2.8)--(5.5,-2.8)--(7.5,-.8)--(7.5,2.7)--(-4,2.7)--(-6,.7)--cycle;
+  \filldraw[fill=rcgreen!25,draw=rcgreen,line width=.65pt]
+   (-4,2.7)--(-1.6,4.6)--(4.8,4.6)--(7.5,2.7)--cycle;
+  \fill[rcgray] (-3.6,-2.8) circle[radius=.6mm];
+  \fill[rcgray] (4.5,-2.8) circle[radius=.6mm];}]
+\definecolor{rcblue}{HTML}{0072B2}
+\definecolor{rcorange}{HTML}{D55E00}
+\definecolor{rcgreen}{HTML}{009E73}
+\definecolor{rcpurple}{HTML}{7B52AB}
+\definecolor{rcgray}{HTML}{58636D}
+\definecolor{rcred}{HTML}{BE3A34}
+\path[use as bounding box] (0,0) rectangle (182,167);
+\fill[white] (0,0) rectangle (182,167);
+\node[tag] at (5,162) {1};
+\node[title] at (10,162) {Explain complete routes in their physical setting};
+
+\begin{scope}[yshift=3mm]
+\fill[rcblue!2] (1,91) rectangle (181,155);
+% Oblique campus roads and parking bays. The EV has one physical input port.
+\begin{scope}[shift={(36,95)},x={(.62mm,.18mm)},y={(-.35mm,.36mm)},z={(0mm,.72mm)}]
+ \fill[rcblue!8] (0,0,0)--(108,0,0)--(108,90,0)--(0,90,0)--cycle;
+ \fill[rcblue!17] (0,0,0)--(108,0,0)--(108,0,-3)--(0,0,-3)--cycle;
+ \fill[rcblue!12] (108,0,0)--(108,90,0)--(108,90,-3)--(108,0,-3)--cycle;
+ \foreach \u in {0,18,...,108}{\draw[white,line width=.4pt] (\u,0,0)--(\u,90,0);}
+ \foreach \v in {0,15,...,90}{\draw[white,line width=.4pt] (0,\v,0)--(108,\v,0);}
+ \fill[rcgray!20] (0,11,0)--(108,11,0)--(108,21,0)--(0,21,0)--cycle;
+ \fill[rcgray!17] (0,67,0)--(108,67,0)--(108,76,0)--(0,76,0)--cycle;
+ \fill[rcgray!17] (45,0,0)--(55,0,0)--(55,90,0)--(45,90,0)--cycle;
+ \draw[white,densely dashed,line width=.6pt] (0,16,0)--(108,16,0)
+  (0,71.5,0)--(108,71.5,0) (50,0,0)--(50,90,0);
+ % The occupied bay is highlighted; the other two bays are empty.
+ \fill[rcgreen!13] (79,35,0)--(94,35,0)--(94,57,0)--(79,57,0)--cycle;
+ \foreach \u in {64,79,94,109}{\draw[rcgray!50,line width=.55pt] (\u,35,0)--(\u,57,0);}
+ \draw[rcgray!50,line width=.55pt] (64,57,0)--(109,57,0);
+ % Contextual campus building, with no added control or charging mechanism.
+ \filldraw[fill=rcgray!21,draw=rcgray!30,line width=.45pt]
+  (10,43,0)--(10,43,7)--(32,43,7)--(32,43,0)--cycle;
+ \filldraw[fill=rcgray!8,draw=rcgray!30,line width=.45pt]
+  (10,43,7)--(10,56,7)--(32,56,7)--(32,43,7)--cycle;
+ \filldraw[fill=rcgray!15,draw=rcgray!30,line width=.45pt]
+  (32,43,0)--(32,56,0)--(32,56,7)--(32,43,7)--cycle;
+ % Movement arrows end before the charger glyphs on the same road.
+ \draw[arr,rcorange,line width=1.3pt] (3,16,1)--(20,16,1)--(41,16,1);
+ \draw[arr,rcblue,line width=1.3pt] (106,16,1)--(93,16,1);
+ \coordinate (Astop) at (50,16,3);
+ \coordinate (Bstop) at (83,16,3);
+ \coordinate (EVstop) at (86,45,4);
+\end{scope}
+\pic at (Astop) {charger=rcorange};
+\pic at (Bstop) {charger=rcblue};
+\node[note] at (Astop) {$A$};
+\node[note] at (Bstop) {$B$};
+\pic at (EVstop) {ev};
+\node[note] at (EVstop) {$r$};
+\coordinate (port) at ($ (EVstop)+(0,-3.1) $);
+\filldraw[fill=white,draw=rcgreen,line width=.9pt] (port) circle[radius=.9mm];
+% These are time-labelled access relationships, not simultaneous wireless inputs.
+\draw[service,rcorange] ($ (Astop)+(0,4.3) $)
+ to[out=84,in=230] ($ (port)+(-.64,-.64) $);
+\draw[service,rcblue] ($ (Bstop)+(0,4.3) $)
+ to[out=86,in=315] ($ (port)+(.64,-.64) $);
+\node[small,text=rcorange,anchor=east] at (59,125) {slots 0--4};
+\node[small,text=rcblue,anchor=west] at (85,127) {slots 4--8};
+\node[note,anchor=west,text=rcorange] at (7,149) {$A$: 7 available units};
+\node[note,anchor=west,text=rcblue] at (62,96) {$B$: 4 available units};
+\node[small,anchor=east] at (106,149) {$r$: 8 units\\one receiving port};
+\draw[arr,rcgray!60,line width=.65pt] (94,143)--($ (EVstop)+(4,5) $);
+\draw[arr,rcgray,line width=.8pt] (6,91)--(16,91);
+\node[small,anchor=west,text=rcgray] at (18,91) {travel};
+\draw[service,rcgray,line width=.8pt] (43,91)--(53,91);
+\node[small,anchor=west,text=rcgray] at (55,91) {scheduled service};
+
+% A time projection makes the one-port and retained-dwell constraints explicit.
+\draw[rcgray!25,line width=.5pt] (111,94)--(111,155);
+\node[note,font=\bfseries] at (147,153) {Committed service\\at one port};
+\node[small,text=rcgreen,anchor=east] at (179,144) {deadline};
+\draw[rcgreen,dashed,line width=.85pt] (164,119)--(164,142);
+\fill[rcorange!65] (118,133) rectangle (141,140);
+\draw[rcorange,densely dotted,line width=.9pt] (141,133) rectangle (164,140);
+\node[note] at (129.5,136.5) {$A$: 4};
+\node[small,text=rcorange] at (152.5,136.5) {idle dwell};
+\fill[rcblue!55] (141,122) rectangle (164,129);
+\node[note] at (152.5,125.5) {$B$: 4};
+\draw[rcorange,dashed,line width=.85pt] (167,122) rectangle (179,129);
+\node[small,text=rcorange] at (173,125.5) {late};
+\draw[->,rcgray,line width=.65pt] (117,114)--(179,114);
+\foreach \xx/\lab in {118/0,141/4,164/8}{
+ \draw[rcgray] (\xx,113)--(\xx,115);
+ \node[small] at (\xx,110) {\lab};}
+\node[small,text=rcgray] at (148,104) {time (slots)};
+\node[small,text=rcorange] at (148,96) {Late service is rejected.};
+\end{scope}
+
+% The two fixed local probes use the original request, port and retained stops.
+\begin{scope}[yshift=15.65mm,yscale=.9]
+\node[tag] at (5,82) {2};
+\node[title] at (10,82) {Probe what the remaining route can actually restore};
+\node[note,font=\bfseries,anchor=west] at (3,73) {Remove $A$};
+\node[note,font=\bfseries,anchor=west] at (98,73) {Remove $B$};
+\draw[rcgray!25,line width=.5pt] (91,35)--(91,76);
+\pic[opacity=.25] at (12,60) {charger=rcorange};
+\node[note,text=rcgray!65] at (12,60) {$A$};
+\draw[rcred,line width=.9pt] (6,55)--(18,66) (6,66)--(18,55);
+\pic at (34,60) {charger=rcblue};
+\node[note] at (34,60) {$B$};
+\pic at (72,60) {ev};
+\node[note] at (72,60) {$r$};
+\draw[service,rcblue] (39.9,61.5) to[out=20,in=160] (67,61.7);
+\node[small,text=rcgray] at (58,68) {no spare energy};
+\node[small,text=rcblue] at (48,51) {4 available; 4 already committed};
+\draw[rcorange,dashed,line width=.8pt] (14,40) rectangle (46,47);
+\fill[rcblue!55] (46,40) rectangle (78,47);
+\node[small,text=rcorange] at (30,43.5) {lost 4};
+\node[note] at (62,43.5) {$B$: 4};
+\node[note] at (46,34) {$d_A^{\rm rec}=0,\quad \kappa_A=1$};
+
+\pic[opacity=.25] at (107,60) {charger=rcblue};
+\node[note,text=rcgray!65] at (107,60) {$B$};
+\draw[rcred,line width=.9pt] (101,55)--(113,66) (101,66)--(113,55);
+\pic at (129,60) {charger=rcorange};
+\node[note] at (129,60) {$A$};
+\pic at (167,60) {ev};
+\node[note] at (167,60) {$r$};
+\draw[service,rcgreen] (134.9,61.5) to[out=20,in=160] (162,61.7);
+\node[small,text=rcgreen!80!black] at (153,68) {restore 3 before slot 8};
+\node[small,text=rcorange] at (143,51) {7 available; 4 already committed};
+\fill[rcorange!65] (109,40) rectangle (141,47);
+\fill[rcgreen!35] (141,40) rectangle (165,47);
+\draw[rcblue,dashed,line width=.8pt] (165,40) rectangle (173,47);
+\node[note] at (125,43.5) {$A$: 4};
+\node[note] at (153,43.5) {$+3$};
+\node[small,text=rcblue] at (169,43.5) {1};
+\node[note] at (141,34) {$d_B^{\rm rec}=3,\quad \kappa_B=0.25$};
+\node[small,text=rcgray] at (91,26.5) {Recovery preserves commitments and uses spare energy at existing dwell locations.};
+\end{scope}
+
+% Changed responsibility guides a neighborhood; the original checker decides adoption.
+\begin{scope}[yshift=13mm]
+\draw[rcgray!25,line width=.5pt] (1,22)--(181,22);
+\node[tag] at (5,16.5) {3};
+\node[title] at (10,16.5) {Guide a route change, then verify it};
+\node[small,anchor=west] at (1,5) {Uniform};
+\node[small,anchor=west] at (1,-7) {Recovery};
+\fill[rcorange!65] (22,2) rectangle (44,8);
+\fill[rcblue!55] (44,2) rectangle (66,8);
+\node[small] at (33,5) {.50};\node[small] at (55,5) {.50};
+\fill[rcorange!65] (22,-10) rectangle (51,-4);
+\fill[rcblue!55] (51,-10) rectangle (66,-4);
+\node[small] at (36.5,-7) {.66};\node[small] at (58.5,-7) {.34};
+\draw[arr,rcpurple] (70,-1)--(80,-1);
+\node[circle,draw=rcorange,fill=rcorange!6,minimum size=7mm,inner sep=0pt] (keepA) at (88,6) {$A$};
+\node[circle,draw=rcblue,fill=rcblue!6,minimum size=7mm,inner sep=0pt] (changeB) at (88,-8) {$B'$};
+\pic at (111,-1) {ev};
+\node[note] at (111,-1) {$r$};
+\draw[arr,rcorange] (keepA.east)--(107,1.7);
+\draw[arr,rcblue] (changeB.east)--(105,-3.5);
+\node[small,text=rcgray] at (109,9.5) {retain $A$; rebuild $B$};
+\node[diamond,draw=rcgreen,fill=rcgreen!6,aspect=1.8,inner sep=1.2mm] (check) at (141,-1) {$\mathcal F$};
+\draw[arr,rcgreen] (118.5,-1)--(check.west);
+\draw[arr,rcgreen] (check.east)--(178,-1);
+\node[small] at (153,8.5) {time / port / energy};
+\node[small,anchor=east] at (180,-9) {retain if $J(P')>J(P)$};
+\end{scope}
+\end{tikzpicture}

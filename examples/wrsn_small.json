@@ -1,0 +1,390 @@
+{
+  "constructed": true,
+  "description": "Three-node, two-charger microfixture with explicitly assumed 0.1 kWh per-node hourly load and a hypothetical transfer curve. It is not the reported N7 case, a calibrated sensor trace, or a benchmark episode. Communication range and charging range are different.",
+  "scenario": {
+    "domain": "WRSN",
+    "locations": [
+      {
+        "id": "L0",
+        "x": 0,
+        "y": 0,
+        "depot": false
+      },
+      {
+        "id": "L1",
+        "x": 20,
+        "y": 0,
+        "depot": false
+      },
+      {
+        "id": "L2",
+        "x": 40,
+        "y": 0,
+        "depot": false
+      }
+    ],
+    "chargers": [
+      {
+        "id": "C0",
+        "initial_location": "L1",
+        "initial_energy": 2,
+        "capacity": 2,
+        "max_power": 1,
+        "speed_mps": 1,
+        "energy_per_metre": 0.0001,
+        "auxiliary_kw": 0.0,
+        "receiver_efficiency": 0.92,
+        "depot_power": 0.0,
+        "reserve_energy": 0.0,
+        "ports": 1
+      },
+      {
+        "id": "C1",
+        "initial_location": "L0",
+        "initial_energy": 2,
+        "capacity": 2,
+        "max_power": 1,
+        "speed_mps": 1,
+        "energy_per_metre": 0.0001,
+        "auxiliary_kw": 0.0,
+        "receiver_efficiency": 0.92,
+        "depot_power": 0.0,
+        "reserve_energy": 0.0,
+        "ports": 1
+      }
+    ],
+    "recipients": [
+      {
+        "id": "N000",
+        "location_id": "L0",
+        "arrival": 0,
+        "departure": 12,
+        "demand": 0,
+        "initial_energy": 1.4,
+        "capacity": 2,
+        "load": [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "source_proxy": false,
+        "initial_soc_proxy": 0.0,
+        "weekday": 0,
+        "sensing_radius": 12,
+        "location_index": 1
+      },
+      {
+        "id": "N001",
+        "location_id": "L1",
+        "arrival": 0,
+        "departure": 12,
+        "demand": 0,
+        "initial_energy": 0.9,
+        "capacity": 2,
+        "load": [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "source_proxy": false,
+        "initial_soc_proxy": 0.0,
+        "weekday": 0,
+        "sensing_radius": 12,
+        "location_index": 2
+      },
+      {
+        "id": "N002",
+        "location_id": "L2",
+        "arrival": 0,
+        "departure": 12,
+        "demand": 0,
+        "initial_energy": 1.5,
+        "capacity": 2,
+        "load": [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "source_proxy": false,
+        "initial_soc_proxy": 0.0,
+        "weekday": 0,
+        "sensing_radius": 12,
+        "location_index": 3
+      }
+    ],
+    "horizon": 12,
+    "step_seconds": 3600,
+    "simulation_seed": 10001,
+    "scenario_id": "constructed:wrsn-three-node",
+    "tasks": [],
+    "road_distance": {},
+    "road_slots": {},
+    "communication_edges": [
+      [
+        "N000",
+        "N001"
+      ],
+      [
+        "N001",
+        "N002"
+      ]
+    ],
+    "required_paths": [
+      [
+        "N000",
+        "N001",
+        "N002"
+      ]
+    ],
+    "transfer_curve": [
+      [
+        0,
+        0.8
+      ],
+      [
+        5,
+        0.4
+      ],
+      [
+        10,
+        0
+      ]
+    ],
+    "coverage_points": [
+      [
+        0,
+        0,
+        1
+      ],
+      [
+        20,
+        0,
+        1
+      ],
+      [
+        40,
+        0,
+        1
+      ]
+    ],
+    "energy_reference": 1000.0,
+    "allow_simultaneous_depot_service": false,
+    "return_deadline": null,
+    "committed_prefixes": [],
+    "safe_locations": {},
+    "clock_offset_seconds": 0.0
+  },
+  "plan": {
+    "routes": [
+      {
+        "charger_id": "C0",
+        "arcs": [
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 0,
+            "end": 1
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 1,
+            "end": 2
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 5,
+            "end": 6
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 6,
+            "end": 7
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 8,
+            "end": 9
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 9,
+            "end": 10
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 10,
+            "end": 11
+          },
+          {
+            "origin": "L1",
+            "destination": "L1",
+            "start": 11,
+            "end": 12
+          }
+        ],
+        "services": [
+          {
+            "recipient_id": "N001",
+            "slot": 4,
+            "energy": 0.4
+          }
+        ],
+        "powers": [
+          {
+            "slot": 4,
+            "output_energy": 0.5,
+            "depot_energy": 0.0
+          }
+        ]
+      },
+      {
+        "charger_id": "C1",
+        "arcs": [
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 0,
+            "end": 1
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 1,
+            "end": 2
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 2,
+            "end": 3
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 3,
+            "end": 4
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 4,
+            "end": 5
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 5,
+            "end": 6
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 6,
+            "end": 7
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 7,
+            "end": 8
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 8,
+            "end": 9
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 9,
+            "end": 10
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 10,
+            "end": 11
+          },
+          {
+            "origin": "L0",
+            "destination": "L0",
+            "start": 11,
+            "end": 12
+          }
+        ],
+        "services": [
+          {
+            "recipient_id": "N000",
+            "slot": 3,
+            "energy": 0.2
+          }
+        ],
+        "powers": [
+          {
+            "slot": 3,
+            "output_energy": 0.25,
+            "depot_energy": 0.0
+          }
+        ]
+      }
+    ]
+  }
+}

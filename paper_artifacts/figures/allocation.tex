@@ -1,0 +1,265 @@
+% Physical coalition labels and local-repair labels are distinct.
+% Exact three-route toy: no measured training-performance claims.
+\begin{tikzpicture}[x=1mm,y=1mm,>=Latex,
+ font=\fontsize{9.5}{10.5}\selectfont,
+ head/.style={font=\bfseries\fontsize{9.5}{10.6}\selectfont,align=center},
+ lab/.style={align=center,inner sep=.5mm},
+ flow/.style={->,line width=.8pt},
+ wire/.style={line width=.8pt},
+ supervise/.style={->,line width=.8pt,densely dashed},
+ route/.style={circle,draw,line width=.8pt,minimum size=5.5mm,inner sep=0pt,fill=white},
+ op/.style={circle,draw,line width=.8pt,minimum size=5.4mm,inner sep=0pt,fill=white},
+ win/.style={line width=.5pt}, dead/.style={densely dashed,line width=.55pt},
+ matrixentry/.style={inner sep=0pt}]
+\definecolor{rcorange}{HTML}{D55E00}
+\definecolor{rcblue}{HTML}{0072B2}
+\definecolor{rcgreen}{HTML}{009E73}
+\definecolor{rcpurple}{HTML}{7B52AB}
+\definecolor{rcgray}{HTML}{58636D}
+\path[use as bounding box] (0,0) rectangle (182,164);
+\fill[white] (0,0) rectangle (182,164);
+\draw[rcgray!25,line width=.5pt] (79,20)--(79,133);
+\node[lab] at (91,160) {One frozen plan $(G,P,q)$: same routes, requests, and empty-plan reference};
+\draw[rcgray!45,line width=.6pt] (1,156.5)--(181,156.5);
+\node[head] at (38,151) {(a) Feasible service recovery};
+\node[head] at (107,151) {(b) Recovery-conditioned shares};
+\node[head] at (158,151) {(c) Dividend redistribution};
+% Named hyperedge boundaries are used for every incoming and outgoing wire.
+\node[draw,ellipse,draw=rcgreen!45,fill=rcgreen!7,line width=.75pt,
+ minimum width=23mm,minimum height=20mm,inner sep=0pt]
+ (abedge) at (146.5,136) {};
+\node[draw,ellipse,draw=rcpurple!45,fill=rcpurple!7,line width=.75pt,
+ minimum width=22mm,minimum height=20mm,inner sep=0pt]
+ (acedge) at (170,136) {};
+
+% Upper stream: fixed-route coalition labels, with no local repair.
+\node[lab,anchor=west,text=rcblue] at (3,143) {coalition masks};
+\foreach \xx/\mask in {13/111,30/110,47/101}{
+ \draw[rcblue!65,line width=.7pt,rounded corners=.7mm] (\xx-6,132.5) rectangle (\xx+6,139.5);
+ \node[lab,text=rcblue] at (\xx,136) {\texttt{\mask}};
+}
+\node[op,draw=rcblue] (jphysical) at (65,136) {$J$};
+\node[lab,text=rcblue] at (56.5,136) {$\cdots$};
+\foreach \xx in {13,30,47}{
+ \draw[flow,rcblue!75] (\xx,132.5)--(\xx,130)--(58,130)--(62,133.5);
+}
+\node[lab] at (39,123.5) {$v_P(S)=J(P|S;q)-J(P_{\emptyset};q)$};
+\node[lab,text=rcblue] (physlabel) at (106,143.5) {physical $v_P(S)$ labels};
+\draw[supervise,rcblue] (jphysical.east)--(75,136)--(75,143.5)--(physlabel.west);
+\draw[supervise,rcblue] (physlabel.east)--(133,143.5)--(133,147.5)--(146.5,147.5)--(abedge.north);
+\draw[supervise,rcblue] (133,143.5)--(133,147.5)--(170,147.5)--(acedge.north);
+
+% Probe AB: remove A; B's retained commitments do not change.
+\node[route,draw=rcorange] (abA) at (8,112) {$A$};
+\draw[rcorange,line width=1.0pt] (5.8,109.8)--(10.2,114.2) (5.8,114.2)--(10.2,109.8);
+\node[route,draw=rcblue] (abB) at (21,112) {$B$};
+\node[route,draw=rcgray!35,text=rcgray!45] at (34,112) {$C$};
+\node[lab,anchor=west] at (43,112) {$T=AB,\ i=A$};
+\node[lab] at (8,102) {$r$};
+\node[lab] at (8,92) {$s$};
+\draw[win,rcgray] (18,102)--(20,102) (31,102)--(35,102)
+ (47,102)--(49,102) (63,102)--(71,102);
+\draw[win,rcgray] (18,92)--(20,92) (31,92)--(35,92)
+ (43,92)--(49,92) (63,92)--(65,92);
+\draw[dead,rcgray] (70,98.5)--(70,106);
+\draw[dead,rcgray] (64,88.5)--(64,96);
+\node[lab] at (73,105.5) {$d_r$};
+\node[lab] at (67,95.5) {$d_s$};
+\foreach \yy in {102,92}{
+ \fill[rcgray!35] (20,\yy-4) rectangle (31,\yy+4);
+ \node[lab] at (25.5,\yy) {$B$};
+ \draw[rcblue!65,densely dotted,line width=.65pt] (49,\yy-4) rectangle (63,\yy+4);
+}
+\draw[rcorange,dashed,line width=.85pt] (35,98) rectangle (47,106);
+\draw[rcorange,dashed,line width=.85pt] (35,88) rectangle (43,96);
+\node[lab,text=rcorange] at (41,102) {$2$};
+\node[lab,text=rcorange] at (39,92) {$1$};
+\fill[rcblue!70] (49,98) rectangle (50.1,106);
+\fill[rcblue!70] (49,88) rectangle (49.7,96);
+\node[lab,text=rcblue] at (56.5,102) {$2\rho$};
+\node[lab,text=rcblue] at (56.5,92) {$\rho$};
+\draw[flow,rcblue] (abB.south)--(21,107.5)--(25.5,107.5)--(25.5,106);
+\node[lab] at (35,82.5) {$\bigl(\min(2,2\rho),\min(1,\rho)\bigr)$};
+\node[lab,anchor=east,text=rcblue] (abcap) at (74,76.5) {$d^{\rm rec}_{A,AB}=3\rho$};
+\draw[flow,rcblue] (35,78.8)--(35,76.5)--(abcap.west);
+
+% Probe AC: remove the same A; retained C has more usable spare resources.
+\node[route,draw=rcorange] (acA) at (8,66) {$A$};
+\draw[rcorange,line width=1.0pt] (5.8,63.8)--(10.2,68.2) (5.8,68.2)--(10.2,63.8);
+\node[route,draw=rcgray!35,text=rcgray!45] at (21,66) {$B$};
+\node[route,draw=rcgreen] (acC) at (34,66) {$C$};
+\node[lab,anchor=west] at (43,66) {$T=AC,\ i=A$};
+\node[lab] at (8,56) {$r$};
+\node[lab] at (8,46) {$s$};
+\draw[win,rcgray] (18,56)--(20,56) (31,56)--(35,56)
+ (47,56)--(49,56) (63,56)--(71,56);
+\draw[win,rcgray] (18,46)--(20,46) (31,46)--(35,46)
+ (43,46)--(49,46) (63,46)--(65,46);
+\draw[dead,rcgray] (70,52.5)--(70,60);
+\draw[dead,rcgray] (64,42.5)--(64,50);
+\node[lab] at (73,59.5) {$d_r$};
+\node[lab] at (67,49.5) {$d_s$};
+\foreach \yy in {56,46}{
+ \fill[rcgray!35] (20,\yy-4) rectangle (31,\yy+4);
+ \node[lab] at (25.5,\yy) {$C$};
+ \draw[rcgreen!70,densely dotted,line width=.65pt] (49,\yy-4) rectangle (63,\yy+4);
+}
+\draw[rcorange,dashed,line width=.85pt] (35,52) rectangle (47,60);
+\draw[rcorange,dashed,line width=.85pt] (35,42) rectangle (43,50);
+\node[lab,text=rcorange] at (41,56) {$2$};
+\node[lab,text=rcorange] at (39,46) {$1$};
+\fill[rcgreen!65] (49,52) rectangle (56.5,60);
+\fill[rcgreen!65] (49,42) rectangle (52.8,50);
+\node[lab,text=rcgreen] at (59,56) {$1$};
+\node[lab,text=rcgreen] at (58,46) {$\frac12$};
+\draw[flow,rcgreen] (acC.south)--(34,61.5)--(25.5,61.5)--(25.5,60);
+\node[lab] at (35,36.5) {$\bigl(\min(2,1),\min(1,\tfrac12)\bigr)$};
+\node[lab,anchor=east,text=rcgreen] (accap) at (74,30.5) {$d^{\rm rec}_{A,AC}=\frac32$};
+\draw[flow,rcgreen] (35,32.8)--(35,30.5)--(accap.west);
+\node[lab] at (38,23) {$d^{\rm rec}_{iT}=\sum_r\min\{d_{irT},D_{irT}\}$};
+\fill[rcgray!35] (3,15.5) rectangle (7,18.5);
+\node[lab,anchor=west] at (8,17) {kept fixed};
+\draw[rcorange,dashed,line width=.7pt] (25,15.5) rectangle (29,18.5);
+\node[lab,anchor=west] at (30,17) {removed};
+\fill[rcgreen!65] (54,15.5) rectangle (58,18.5);
+\node[lab,anchor=west] at (59,17) {recovered};
+\draw[supervise,rcblue] (abcap.east)--(80,76.5)--(80,99)--(90,99)--(90,103);
+\draw[supervise,rcgreen] (accap.east)--(80,30.5)--(80,76.5);
+\node[lab] at (39,118) {$\kappa_{iT}=1-d^{\rm rec}_{iT}/d_{iT}$};
+\node[lab,text=rcgray] at (35,72) {repair labels, $i\in T$};
+
+% Aligned physical tensors and explicit normalization operations.
+\node[lab] at (96,135) {$\boldsymbol\kappa$};
+\node[lab] at (120,135) {$\mathbf U$};
+\foreach \xx/\txt in {91/AB,101/AC,114/AB,126/AC}{\node[lab] at (\xx,130) {$\txt$};}
+\foreach \yy/\txt in {123/A,115/B,107/C}{\node[lab] at (83,\yy) {$\txt$};}
+\fill[rcorange!12] (86,119) rectangle (96,127);
+\fill[rcorange!12] (96,103) rectangle (106,111);
+\draw[rcorange!65,line width=.65pt] (86,103) rectangle (106,127);
+\draw[rcorange!30,line width=.4pt] (96,103)--(96,127) (86,111)--(106,111) (86,119)--(106,119);
+\node[matrixentry,text=rcorange] at (91,123) {$h$};
+\node[matrixentry] at (101,123) {$\ell$};
+\node[matrixentry] at (91,115) {$\ell$};
+\node[matrixentry,text=rcgray!55] at (101,115) {$-$};
+\node[matrixentry,text=rcgray!55] at (91,107) {$-$};
+\node[matrixentry,text=rcorange] at (101,107) {$h$};
+\draw[rcblue!65,line width=.65pt] (108,103) rectangle (132,127);
+\draw[rcblue!30,line width=.4pt] (120,103)--(120,127) (108,111)--(132,111) (108,119)--(132,119);
+% Interaction-indexed urgency uses the same subscript notation as the text.
+\node[matrixentry] at (114,123) {$u_{A,AB}$};
+\node[matrixentry] at (126,123) {$u_{A,AC}$};
+\node[matrixentry] at (114,115) {$u_{B,AB}$};
+\node[matrixentry,text=rcgray!55] at (126,115) {$-$};
+\node[matrixentry,text=rcgray!55] at (114,107) {$-$};
+\node[matrixentry] at (126,107) {$u_{C,AC}$};
+\node[op,draw=rcorange] (bplus) at (104,94) {$+$};
+\node[op,draw=rcblue] (eta) at (122,94) {$\times$};
+\draw[flow,rcorange] (96,103)--(96,94)--(bplus.west);
+\draw[flow,rcblue] (120,103)--(120,101)--(122,101)--(eta.north);
+\node[lab,text=rcblue] at (128,99) {$\eta=0$};
+\draw[flow,rcblue] (128,97)--(128,94)--(eta.east);
+\draw[flow,rcblue] (eta.west)--(bplus.east);
+\node[lab] at (112,88.5) {$b_{iT}$};
+\node[draw,ellipse,line width=.8pt,fill=white,minimum width=20mm,minimum height=8mm,inner sep=.5mm] (expo) at (95,82) {$\exp(b/\tau)$};
+\node[op,draw=rcorange,minimum size=7mm] (colsum) at (120,82) {$\Sigma_i$};
+\draw[flow,rcorange] (bplus.south)--(104,89)--(95,89)--(expo.north);
+\coordinate (expfork) at (108,82);
+\draw[flow,rcorange] (expo.east)--(colsum.west);
+\fill[rcorange] (expfork) circle (.65mm);
+\node[op,draw=rcorange] (division) at (108,71) {$\div$};
+\draw[flow,rcorange] (expfork)--(division.north);
+\draw[flow,rcorange] (colsum.south)--(120,71)--(division.east);
+\node[lab,anchor=east] at (104,72) {$\tau=\frac12$};
+\node[op,draw=rcorange] (lambda) at (108,61) {$\times$};
+\draw[flow,rcorange] (division.south)--(lambda.north);
+\node[lab] (lambdaparam) at (96,61) {$\lambda=\frac12$};
+\draw[flow,rcorange] (lambdaparam.east)--(lambda.west);
+\node[op,draw=rcorange] (uniformmix) at (108,51) {$+$};
+\draw[flow,rcorange] (lambda.south)--(uniformmix.north);
+\node[lab] (uniform) at (91,51) {$(1-\lambda)/|T|$};
+\draw[flow,rcorange] (uniform.east)--(uniformmix.west);
+\draw[flow,rcorange] (uniformmix.south)--(108,43);
+\node[lab] at (100,46) {$AB$};
+\node[lab] at (119,46) {$AC$};
+\foreach \yy/\txt in {39.5/A,32.5/B,25/C}{\node[lab] at (88,\yy) {$\txt$};}
+\fill[rcorange!10] (93,36) rectangle (109,43);
+\fill[rcpurple!8] (109,21) rectangle (128,29);
+\draw[rcorange,line width=.8pt] (93,21) rectangle (128,43);
+\draw[rcorange!35,line width=.5pt] (109,21)--(109,43) (93,29)--(128,29) (93,36)--(128,36);
+\node[matrixentry,text=rcorange] at (100,39.5) {$0.6$};
+\node[matrixentry,text=rcpurple] at (119,39.5) {$0.4$};
+\node[matrixentry,text=rcorange] at (100,32.5) {$0.4$};
+\node[matrixentry,text=rcgray!55] at (119,32.5) {$-$};
+\node[matrixentry,text=rcgray!55] at (100,25) {$-$};
+\node[matrixentry,text=rcpurple] at (119,25) {$0.6$};
+\node[lab] at (107,16.5) {$h=\frac12+\frac12\ln\frac73,\quad\ell=\frac12,\quad\rho=1-h$};
+\draw[wire,rcorange] (128,33)--(131,33)--(131,95);
+\node[lab,rotate=90,text=rcorange] at (127.5,62) {gather $\alpha_{iT}$};
+
+% Exact signed dividends, four products, and three route-level summations.
+\node[route,draw=rcorange] (abrouteA) at (140,139) {$A$};
+\node[route,draw=rcblue] (abrouteB) at (153.3,139) {$B$};
+\node[route,draw=rcorange] (acrouteA) at (163.7,139) {$A$};
+\node[route,draw=rcgreen] (acrouteC) at (176.3,139) {$C$};
+\draw[rcgreen,line width=1pt] (abrouteA.east)--(abrouteB.west);
+\draw[rcpurple,line width=1pt] (acrouteA.east)--(acrouteC.west);
+\node[lab,text=rcgreen!85!black] (dab) at (146.5,132) {$\delta_{AB}=+4$};
+\node[lab,text=rcpurple] (dac) at (170,132) {$\delta_{AC}=-2$};
+\foreach \name/\xx in {pAA/140,pBA/153,pAC/166,pCC/177.5}{\node[op] (\name) at (\xx,105) {$\times$};}
+\coordinate (abjunction) at (146.5,119);
+\coordinate (acjunction) at (170,119);
+\draw[wire,rcgreen] (abedge.south)--(abjunction);
+\draw[flow,rcgreen] (abjunction)--(140,119)--(pAA.north);
+\draw[flow,rcgreen] (abjunction)--(153,119)--(pBA.north);
+\fill[rcgreen] (abjunction) circle (.65mm);
+\draw[wire,rcpurple] (acedge.south)--(acjunction);
+\draw[flow,rcpurple] (acjunction)--(166,119)--(pAC.north);
+\draw[flow,rcpurple] (acjunction)--(177.5,119)--(pCC.north);
+\fill[rcpurple] (acjunction) circle (.65mm);
+% Indexed alpha bus; arches are explicit bridges, with gaps in crossed wires.
+\draw[wire,rcorange] (131,95)--(133.5,95)
+ to[out=90,in=90] (136.5,95)--(155,95)
+ to[out=90,in=90] (158,95)--(160.5,95)
+ to[out=90,in=90] (163.5,95)--(177.5,95);
+\foreach \xx/\val/\name/\labelx in {140/.6/pAA/140,153/.4/pBA/151.5,166/.4/pAC/166,177.5/.6/pCC/177.5}{
+ \fill[rcorange] (\xx,95) circle (.55mm);
+ \draw[flow,rcorange] (\xx,95)--(\name.south);
+ \node[lab,text=rcorange] at (\labelx,90) {$\val$};
+}
+\draw[wire,rcgreen] (pAA.west)--(135,105)--(135,97.1);
+\draw[flow,rcgreen] (135,94.3)--(135,59)--(140.3,59);
+\draw[wire,rcgreen] (pBA.east)--(156.5,105)--(156.5,97.1);
+\draw[wire,rcgreen] (156.5,94.3)--(156.5,87.5)--(153,87.5)--(153,70.1);
+\draw[flow,rcgreen] (153,67.3)--(153,59)--(156.3,59);
+\draw[wire,rcpurple] (pAC.west)--(162,105)--(162,97.1);
+\draw[wire,rcpurple] (162,94.3)--(162,87)--(165,87)--(165,68.7)--(160.5,68.7)
+ to[out=90,in=90] (157.5,68.7)--(154.5,68.7)
+ to[out=90,in=90] (151.5,68.7)--(149,68.7);
+\draw[flow,rcpurple] (149,68.7)--(149,59)--(145.7,59);
+\draw[flow,rcpurple] (pCC.east)--(181,105)--(181,59)--(177.7,59);
+\node[lab,text=rcgreen!85!black] at (140,84) {$+2.4$};
+\node[lab,text=rcgreen!85!black] at (148,79.8) {$+1.6$};
+\node[lab,text=rcpurple,anchor=west] at (169.5,86) {$-0.8$};
+\node[lab,text=rcpurple] at (175.5,80) {$-1.2$};
+\foreach \nm/\xx/\val in {sA/143/4,sB/159/3,sC/175/2}{
+ \node[op,draw=rcgray!70,fill=rcgray!7] (\nm) at (\xx,75) {$\val$};
+}
+\node[op,draw=rcorange] (sumA) at (143,59) {$+$};
+\node[op,draw=rcblue] (sumB) at (159,59) {$+$};
+\node[op,draw=rcgreen] (sumC) at (175,59) {$+$};
+\draw[flow,rcgray] (sA.south)--(sumA.north);
+\draw[wire,rcgray] (sB.south)--(159,70.8);
+\draw[flow,rcgray] (159,68)--(sumB.north);
+\draw[flow,rcgray] (sC.south)--(sumC.north);
+\foreach \nm/\xx/\out/\val in {sumA/143/A/5.6,sumB/159/B/4.6,sumC/175/C/0.8}{
+ \draw[flow,rcgray] (\nm.south)--(\xx,46);
+ \node[lab] at (\xx,42) {$\psi_{\out}$};
+ \node[lab,font=\bfseries\fontsize{10}{11}\selectfont] at (\xx,35) {$\val$};
+ \draw[flow,rcgray!70] (\xx,32)--(\xx,12);
+ \fill[rcgray] (\xx,12) circle (.6mm);
+}
+\draw[wire,rcgray!60] (2,12)--(181,12);
+\node[lab] at (91,5) {$\sum_i\psi_i=5.6+4.6+0.8=11=v_P(N)$;\quad
+ $\lambda=0\ \Longrightarrow\ \phi=(5,5,1)$};
+\end{tikzpicture}
+

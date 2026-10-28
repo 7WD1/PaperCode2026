@@ -1,0 +1,70 @@
+% Editable scientific schematic. All numbers are an illustrative allocation game.
+\begin{tikzpicture}[x=1mm,y=1mm,>=Latex,
+  font=\fontsize{9.5}{10.7}\selectfont,
+  route/.style={circle,minimum size=8mm,inner sep=0pt,line width=.7pt,fill=white},
+  interaction/.style={ellipse,minimum width=15mm,minimum height=9mm,inner sep=1mm,line width=.7pt},
+  arrow/.style={->,line width=.8pt},
+  title/.style={font=\bfseries\fontsize{10}{11}\selectfont},
+  note/.style={align=center,inner sep=1mm}]
+\definecolor{rcorange}{HTML}{D55E00}
+\definecolor{rcblue}{HTML}{0072B2}
+\definecolor{rcgreen}{HTML}{009E73}
+\definecolor{rcpurple}{HTML}{7B52AB}
+\definecolor{rcgray}{HTML}{58636D}
+\path[use as bounding box] (-1,-1) rectangle (181,94);
+\fill[rcblue!4,rounded corners=2mm] (0,9) rectangle (83,93);
+\fill[rcorange!4,rounded corners=2mm] (96,9) rectangle (180,93);
+\node[title] at (41.5,87) {(a) Uniform interaction sharing};
+\node[title] at (138,87) {(b) Resource-conditioned sharing};
+
+% The graph, coalition and value are identical in both panels.
+\foreach \dx in {0,96}{
+  \begin{scope}[shift={(\dx,0)}]
+    \node[route,draw=rcorange] (a\dx) at (13,63) {$A$};
+    \node[route,draw=rcblue] (b\dx) at (42,73) {$B$};
+    \node[route,draw=rcgreen] (c\dx) at (71,63) {$C$};
+    \node[interaction,draw=rcpurple,fill=rcpurple!8] (ab\dx) at (25,77) {$\delta_{AB}=4$};
+    \node[interaction,draw=rcgreen,fill=rcgreen!8] (ac\dx) at (42,51) {$\delta_{AC}=-2$};
+    \draw[rcpurple,line width=.8pt] (a\dx.north) to[bend left=10] (ab\dx.west);
+    \draw[rcpurple,line width=.8pt] (ab\dx.east) -- (b\dx.west);
+    \draw[rcgreen,line width=.8pt] (a\dx.south) to[bend right=10] (ac\dx.west);
+    \draw[rcgreen,line width=.8pt] (ac\dx.east) to[bend right=10] (c\dx.south);
+    \node at (11,50) {$\delta_A=4$};
+    \node at (73,50) {$\delta_C=2$};
+    \node at (57,75) {$\delta_B=3$};
+  \end{scope}
+}
+
+% Two allocation rows expose the operation on each dividend.
+\node[anchor=west] at (5,41) {$AB$};
+\fill[rcorange!70] (17,37) rectangle (47,44);
+\fill[rcblue!65] (47,37) rectangle (77,44);
+\node[text=white] at (32,40.5) {$2$};
+\node[text=white] at (62,40.5) {$2$};
+\node[anchor=west] at (5,29) {$AC$};
+\fill[rcorange!23] (17,25) rectangle (47,32);
+\fill[rcgreen!24] (47,25) rectangle (77,32);
+\draw[rcorange,line width=.6pt] (17,25) rectangle (47,32);
+\draw[rcgreen,line width=.6pt] (47,25) rectangle (77,32);
+\node at (32,28.5) {$-1$};
+\node at (62,28.5) {$-1$};
+\node at (41.5,16) {$\phi=(5,\,5,\,1)$};
+
+\node[anchor=west] at (101,41) {$AB$};
+\fill[rcorange!70] (113,37) rectangle (149,44);
+\fill[rcblue!65] (149,37) rectangle (173,44);
+\node[text=white] at (131,40.5) {$2.4$};
+\node[text=white] at (161,40.5) {$1.6$};
+\node[anchor=west] at (101,29) {$AC$};
+\fill[rcorange!23] (113,25) rectangle (137,32);
+\fill[rcgreen!24] (137,25) rectangle (173,32);
+\draw[rcorange,line width=.6pt] (113,25) rectangle (137,32);
+\draw[rcgreen,line width=.6pt] (137,25) rectangle (173,32);
+\node at (125,28.5) {$-0.8$};
+\node at (155,28.5) {$-1.2$};
+\node at (138,16) {$\psi=(5.6,\,4.6,\,0.8)$};
+
+\draw[arrow,rcgray] (85,66) -- (94,66);
+\node[note,rotate=90,text=rcgray] at (89.5,40) {same game};
+\node[note] at (90,3) {Schematic example: task-specific shares change responsibility; $\sum_i\phi_i=\sum_i\psi_i=v_P(N)=11$.};
+\end{tikzpicture}

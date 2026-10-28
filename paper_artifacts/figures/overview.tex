@@ -1,0 +1,262 @@
+% Continuous architecture; mask-specific variables enter only the value head.
+\begin{tikzpicture}[x=1mm,y=.988mm,>=Latex,
+ font=\sffamily\fontsize{9.5}{10.7}\selectfont,
+ lab/.style={align=center,inner sep=.7mm},
+ ttl/.style={font=\sffamily\bfseries\fontsize{10}{11}\selectfont,align=center},
+ dot/.style={circle,draw,line width=.65pt,minimum size=4.7mm,inner sep=.7mm,fill=white},
+ op/.style={circle,draw,line width=.8pt,minimum size=7mm,inner sep=.6mm,fill=white},
+ arr/.style={->,line width=.85pt},grad/.style={->,densely dashed,line width=.8pt},
+ tensor/.style={draw,line width=.65pt,fill=white,minimum height=6mm,inner sep=.7mm,align=center}]
+\definecolor{rcorange}{HTML}{D55E00}
+\definecolor{rcblue}{HTML}{0072B2}
+\definecolor{rcgreen}{HTML}{009E73}
+\definecolor{rcpurple}{HTML}{7B52AB}
+\definecolor{rcgray}{HTML}{58636D}
+\pgfdeclarelayer{ovbackground}
+\pgfdeclarelayer{ovrelations}
+\pgfsetlayers{ovbackground,ovrelations,main}
+\path[use as bounding box] (-1,-15) rectangle (181,166);
+\begin{pgfonlayer}{ovbackground}
+ \fill[rcblue!3,rounded corners=4mm] (1,101) rectangle (180,165);
+ \fill[rcpurple!4] (41,64) ellipse (41mm and 29mm);
+ \fill[rcorange!4] (140,59) ellipse (40mm and 34mm);
+ \fill[rcgreen!5] (91,25) ellipse (18mm and 17mm);
+\end{pgfonlayer}
+\node[ttl,anchor=west] at (3,161.5) {(a) One complete plan, one typed graph encoding};
+\node[lab] at (24,153) {environment $G$};
+\node[lab] at (69,155) {marked plan $P$};
+\node[lab] at (112,153) {layer 1};
+\node[lab] at (137,153) {layer 2};
+\node[lab] at (169.5,153) {route pool};
+\draw[rcblue!20,line width=.5pt,rounded corners=1mm] (0,100.5) rectangle (49,150);
+\draw[rcorange!20,line width=.5pt,rounded corners=1mm] (50,108) rectangle (87,152);
+
+% Twelve typed input nodes and five structural relations.
+\node[dot,rectangle,draw=rcorange] (ga) at (8,143) {$A$};
+\node[dot,rectangle,draw=rcblue] (gb) at (24,143) {$B$};
+\node[dot,rectangle,draw=rcgreen] (gc) at (40,143) {$C$};
+\node[dot,draw=rcgray] (r1) at (5,128) {$r_1$};
+\node[dot,draw=rcgray] (r2) at (17,127) {$r_2$};
+\node[dot,draw=rcgray] (r3) at (31,127) {$r_3$};
+\node[dot,draw=rcgray] (r4) at (43,128) {$r_4$};
+\node[dot,diamond,draw=rcblue,minimum size=6mm] (l1) at (13,114) {$\ell_1$};
+\node[dot,diamond,draw=rcblue,minimum size=6mm] (l2) at (36,114) {$\ell_2$};
+\node[dot,rectangle,draw=rcgray] (t0) at (7,104) {$t_0$};
+\node[dot,rectangle,draw=rcgray] (t1) at (24,104) {$t_1$};
+\node[dot,rectangle,draw=rcgray] (t2) at (42,104) {$t_2$};
+\begin{pgfonlayer}{ovrelations}
+ \draw[rcorange,line width=.9pt] (ga)--(r1) (ga)--(r2);
+ \draw[rcblue,line width=.9pt] (gb)--(r2) (gb)--(r3);
+ \draw[rcgreen,line width=.9pt] (gc)--(r3) (gc)--(r4);
+ \draw[rcgray!70,line width=.65pt] (r1)--(l1) (r2)--(l1) (r3)--(l2) (r4)--(l2);
+ \draw[rcblue,<->,line width=.75pt] (l1)--(l2);
+ \draw[rcpurple,dashed,line width=.8pt] (r2)--(r3);
+ \draw[rcgray,densely dashed,line width=.65pt] (l1)--(t0) (l2)--(t2);
+ \draw[rcgray,->,line width=.7pt] (t0)--(t1);
+ \draw[rcgray,->,line width=.7pt] (t1)--(t2);
+\end{pgfonlayer}
+
+% Full candidate routes: the plan graph marks travel, service and return stops.
+\draw[rcgray!50,->,line width=.65pt] (56,146.5)--(85,146.5);
+\foreach \xx/\tt in {58/0,70/1,83/2}{
+ \node[lab] at (\xx,149) {$t_{\tt}$};
+ \draw[rcgray!40,dotted] (\xx,144.5)--(\xx,108.5);
+}
+\foreach \nm/\yy/\cl/\loc/\srv in {A/136/rcorange/1/{r_1,r_2},B/124/rcblue/1/{r_2,r_3},C/112/rcgreen/2/{r_3,r_4}}{
+ \node[text=\cl] at (52,\yy) {$\nm$};
+ \node[dot,draw=\cl,minimum size=4mm] (p\nm0) at (58,\yy) {$\ell_{\loc}$};
+ \node[tensor,draw=\cl,fill=\cl!9,minimum height=5mm,inner sep=.7mm] (p\nm1) at (70,\yy) {$\srv$};
+ \node[dot,draw=\cl,minimum size=4mm] (p\nm2) at (83,\yy) {$\ell_{\loc}$};
+ \draw[arr,\cl] (p\nm0.east)--(p\nm1.west);
+ \draw[arr,\cl] (p\nm1.east)--(p\nm2.west);
+}
+\node[tensor,ellipse,draw=rcblue,minimum height=6mm] (context) at (69,96) {$G_P,q$};
+\draw[arr,rcblue] (24,100.5)--(24,96)--(context.west);
+\draw[arr,rcblue] (70,108)--(context.north);
+
+% Two relation-mean layers, with self-state transforms and nonlinear updates.
+\foreach \dx/\dy in {2/2,1/1,0/0}{
+ \draw[rcblue,fill=rcblue!8,line width=.65pt] (92+\dx,133+\dy) rectangle (99+\dx,143+\dy);
+ \draw[rcblue!45,line width=.4pt] (92+\dx,136+\dy)--(99+\dx,136+\dy);
+ \draw[rcblue!45,line width=.4pt] (92+\dx,139+\dy)--(99+\dx,139+\dy);
+}
+\node[lab] at (96,129) {$H^{(0)}$};
+\draw[arr,rcblue] (context.east)--(89,96)--(89,138)--(92,138);
+\foreach \base/\num in {112/1,137/2}{
+ \node[dot,draw=rcblue,minimum size=3.8mm] (u\num a) at (\base-5,146) {$u$};
+ \node[dot,draw=rcorange,minimum size=3.8mm] (u\num b) at (\base+5,146) {$w$};
+ \node[op,ellipse,draw=rcpurple,minimum width=12mm,minimum height=6mm] (mean\num) at (\base,136.5) {mean};
+ \node[op,draw=rcblue,minimum size=5mm] (act\num) at (\base,125.5) {$\sigma$};
+ \begin{pgfonlayer}{ovrelations}
+  \draw[arr,rcblue] (u\num a.south)--(mean\num.north west);
+  \draw[arr,rcorange] (u\num b.south)--(mean\num.north east);
+ \end{pgfonlayer}
+ \draw[arr,rcpurple] (mean\num.south)--(act\num.north);
+}
+\draw[arr,rcblue] (101,138)--(mean1.west);
+\draw[rcblue,line width=.7pt] (101,138)--(103,138)--(103,125.5);
+\node[lab,text=rcblue] (self1) at (106,121.8) {$W_\nu$};
+\draw[arr,rcblue] (103,125.5)--(act1.west);
+\foreach \dx/\dy in {1.5/1.5,0/0}{
+ \draw[rcpurple,fill=rcpurple!8,line width=.65pt] (120+\dx,121.5+\dy) rectangle (126+\dx,130.5+\dy);
+ \draw[rcpurple!45,line width=.4pt] (120+\dx,124.5+\dy)--(126+\dx,124.5+\dy);
+ \draw[rcpurple!45,line width=.4pt] (120+\dx,127.5+\dy)--(126+\dx,127.5+\dy);
+}
+\draw[arr,rcblue] (act1.east)--(120,125.5);
+\node[lab] at (124,118) {$H^{(1)}$};
+\draw[arr,rcpurple] (127.5,126)--(128,126)--(128,136.5)--(mean2.west);
+\node[lab,text=rcblue] (self2) at (131,121.8) {$W_\nu$};
+\draw[arr,rcblue] (128,126)--(act2.west);
+\foreach \dx/\dy in {2/2,1/1,0/0}{
+ \draw[rcgreen,fill=rcgreen!8,line width=.65pt] (146+\dx,121.5+\dy) rectangle (152+\dx,131.5+\dy);
+ \draw[rcgreen!45,line width=.4pt] (146+\dx,124.5+\dy)--(152+\dx,124.5+\dy);
+ \draw[rcgreen!45,line width=.4pt] (146+\dx,127.5+\dy)--(152+\dx,127.5+\dy);
+}
+\draw[arr,rcblue] (act2.east)--(146,125.5);
+\node[lab] at (150,118) {$H^{(2)}$};
+\node[op,draw=rcgreen,minimum size=6mm] (pool) at (161,136.5) {$\Sigma$};
+\draw[arr,rcgreen] (154,127)--(156,127)--(156,136.5)--(pool.west);
+\foreach \nm/\yy/\cl in {A/146/rcorange,B/136.5/rcblue,C/127/rcgreen}{
+ \node[dot,draw=\cl,minimum size=6mm] (h\nm) at (171,\yy) {$h_\nm$};
+ \draw[arr,\cl] (pool.east)--(h\nm.west);
+}
+\node[lab] at (137,112.5) {$m_{uv,r}^{(\ell)}=M_r^{(\ell)}(h_u^{(\ell)},h_v^{(\ell)},e_{uv})$};
+\node[lab] at (137,105.5) {$h_v^{(\ell+1)}=\sigma(W_\nu h_v^{(\ell)}+\sum_r\overline m_{rv}^{(\ell)})$};
+
+% Fixed-context bus: multiple coalitions never trigger new graph encodings.
+\node[draw=rcpurple!35,rounded corners=1mm,minimum width=12mm,minimum height=10mm,inner sep=0pt] (fcgroup) at (74,85) {};
+\node[draw=rcorange!35,rounded corners=1mm,minimum width=12mm,minimum height=10mm,inner sep=0pt] (frgroup) at (125,82) {};
+\node[lab,text=rcblue] (fixedlabel) at (126,97.5) {$Z_P=(h_A,h_B,h_C)$ fixed across masks};
+\draw[rcblue,line width=.85pt] (hA.east)--(177,146)--(177,87.5);
+\draw[rcblue,line width=.85pt] (fixedlabel.east)--(177,97.5);
+\draw[rcblue,line width=.85pt] (hB.east)--(177,136.5);
+\draw[rcblue,line width=.85pt] (hC.east)--(177,127);
+\fill[rcblue] (177,136.5) circle (.6mm);
+\fill[rcblue] (177,127) circle (.6mm);
+\draw[rcblue,line width=.85pt] (fixedlabel.west)--(91,97.5)--(91,92)--(74,92);
+\draw[arr,rcblue] (74,92)--(fcgroup.north);
+\draw[arr,rcblue] (177,87.5)--(134,87.5)--(frgroup.north east);
+\fill[rcblue] (177,97.5) circle (.6mm);
+\node[ttl,anchor=west] at (3,91.5) {(b) Signed route interactions};
+\node[ttl,anchor=west] at (102,91.5) {(c) Recovery-grounded shares};
+
+% Independent signed-interaction head and its task-linked hypergraph.
+\foreach \cl/\xx in {70/1,74/2,78/3}{
+ \foreach \yy in {81,85,89}{\node[circle,draw=rcpurple,fill=white,minimum size=1.3mm,inner sep=0pt] (f\xx\yy) at (\cl,\yy) {};}
+}
+\foreach \ya in {81,85,89}{\foreach \yb in {81,85,89}{
+ \draw[rcpurple!45,line width=.4pt] (f1\ya)--(f2\yb);
+ \draw[rcpurple!45,line width=.4pt] (f2\ya)--(f3\yb);
+}}
+\node[text=rcpurple] at (86,88.5) {$f_c$};
+\node[ellipse,draw=rcpurple!35,line width=.6pt,minimum width=68mm,minimum height=26mm,inner sep=0pt] (signedgroup) at (37,71) {};
+\node[dot,draw=rcorange,minimum size=6mm] (sa) at (13,73) {$A$};
+\node[dot,draw=rcblue,minimum size=6mm] (sb) at (39,73) {$B$};
+\node[dot,draw=rcgreen,minimum size=6mm] (sc) at (65,73) {$C$};
+\draw[rcpurple,line width=1.2pt] (sa) to[bend left=23] node[above] {$c_{AB}>0$} (sb);
+\draw[rcgreen,dashed,line width=1.1pt] (sa) to[bend right=30] node[below] {$c_{AC}<0$} (sc);
+\draw[arr,rcpurple] (fcgroup.east)--(82,85)--(82,71)--(signedgroup.east);
+\node[tensor,draw=rcpurple,minimum width=54mm,fill=rcpurple!5] (coeff) at (37,50.5)
+ {$c_A\;c_B\;c_C\;c_{AB}\;c_{AC}\;\cdots$};
+\draw[arr,rcpurple] (signedgroup.south)--(coeff.north);
+\node[lab,text=rcpurple] at (61,43.3) {$c_T$ fixed across $S$};
+
+% A bank of masks enters only the fixed multilinear value computation.
+\foreach \row/\bits in {0/{1,1,0},1/{1,0,1},2/{1,1,1}}{
+ \pgfmathtruncatemacro{\rr}{\row+1}
+ \node[lab] at (6,41-4.5*\row) {$S^{(\rr)}$};
+ \foreach \bit [count=\cc from 0] in \bits {
+  \draw[rcgray!60,fill=rcblue!6,line width=.5pt] (12+4.5*\cc,38.8-4.5*\row) rectangle +(4.5,4.5);
+  \node at (14.25+4.5*\cc,41.05-4.5*\row) {$\bit$};
+ }
+}
+\node[op,draw=rcpurple] (prodmask) at (39,36.5) {$\prod$};
+\node[op,draw=rcpurple] (sumvalue) at (57,36.5) {$\sum$};
+\draw[arr,rcgray] (25.5,36.5)--(prodmask.west);
+\draw[arr,rcpurple] (prodmask.east)--(sumvalue.west);
+\draw[arr,rcpurple] (coeff.south)--(prodmask.north);
+\node[lab] at (42,26.5) {$\widehat v_P(S)=\sum_{T\in\mathcal H_K}c_T\prod_{i\in T}s_i$};
+\draw[rcpurple,line width=.85pt] (sumvalue.east)--(72,36.5)--(72,16);
+\node[op,draw=rcpurple,minimum size=7mm] (lv) at (42,16) {$\mathcal L_v$};
+\node[lab] (physicalv) at (14,16) {$v_P(S)$};
+\draw[arr,rcgray] (physicalv.east)--(lv.west);
+\draw[arr,rcpurple] (72,16)--(lv.east);
+\node[lab,text=rcpurple] at (67,20.5) {$\widehat v_P(S)$};
+\node[lab,text=rcpurple] (regularizers) at (63,8) {$\mathcal L_{\rm rank}+\mathcal L_{\rm sparse}$};
+\draw[rcpurple,densely dashed,line width=.8pt] (lv.south)--(42,3)--(0,3)--(0,85);
+\draw[grad,rcpurple] (0,85)--(fcgroup.west);
+\draw[rcpurple,densely dashed,line width=.8pt] (regularizers.south)--(63,3)--(42,3);
+\fill[rcpurple] (42,3) circle (.6mm);
+
+% Recovery, urgency and a uniform/softmax mixture define resource shares.
+\foreach \cl/\xx in {121/1,125/2,129/3}{
+ \foreach \yy in {78,82,86}{\node[circle,draw=rcorange,fill=white,minimum size=1.3mm,inner sep=0pt] (r\xx\yy) at (\cl,\yy) {};}
+}
+\foreach \ya in {78,82,86}{\foreach \yb in {78,82,86}{
+ \draw[rcorange!50,line width=.4pt] (r1\ya)--(r2\yb);
+ \draw[rcorange!50,line width=.4pt] (r2\ya)--(r3\yb);
+}}
+\node[text=rcorange] at (114,78) {$f_r$};
+\node[op,draw=rcorange,minimum size=6mm] (sigmoid) at (125,72) {$\sigma$};
+\draw[arr,rcorange] (frgroup.south)--(sigmoid.north);
+\node[lab,text=rcorange] (khat) at (125,64) {$\widehat\kappa_{iT}$};
+\draw[arr,rcorange] (sigmoid.south)--(khat.north);
+\node[op,draw=rcgray,minimum size=6mm] (clock) at (151,80) {};
+\draw[rcgray,line width=.7pt] (151,80)--(151,82) (151,80)--(153,79);
+\node[lab] at (162,80) {$u_{iT}$};
+\node[op,draw=rcgray,minimum size=6mm] (eta) at (160,68) {$\eta$};
+\draw[arr,rcgray] (clock.south)--(151,75)--(160,75)--(eta.north);
+\node[op,draw=rcorange,minimum size=7mm] (badd) at (143,62) {$+$};
+\draw[arr,rcorange] (khat.east)--(badd.west);
+\draw[arr,rcgray] (eta.south)--(160,62)--(badd.east);
+\node[lab] (bscore) at (143,51.5) {$\widehat b_{iT}/\tau$};
+\draw[arr,rcorange] (badd.south)--(bscore.north);
+\node[tensor,ellipse,draw=rcorange,minimum width=21mm,minimum height=7mm] (softmax) at (127,44) {$\operatorname{softmax}_T$};
+\draw[arr,rcorange] (bscore.south)--(143,49)--(127,49)--(softmax.north);
+\node[op,draw=rcgray,minimum size=9mm] (uniform) at (164,44) {$|T|^{-1}$};
+\node[op,draw=rcorange,minimum size=7mm] (mix) at (143,33) {$+$};
+\draw[arr,rcorange] (softmax.south)--(127,33)--(mix.west);
+\node[text=rcorange] at (124,37.5) {$\lambda$};
+\draw[arr,rcgray] (uniform.south)--(164,33)--(mix.east);
+\node[lab] at (171,36.5) {$1-\lambda$};
+\node[tensor,draw=rcorange,fill=rcorange!8,minimum width=11mm] (alpha) at (114,33) {$\widehat\alpha_{iT}$};
+\draw[arr,rcorange] (mix.south)--(143,27)--(114,27)--(alpha.south);
+
+% True physical recovery has a separate loss and backward path.
+\node[op,draw=rcorange,minimum size=7mm] (lr) at (107,63) {$\mathcal L_r$};
+\node[lab,text=rcgray] (truthk) at (107,52) {$D\!\to\!\kappa_{iT}$};
+\draw[arr,rcgray] (truthk.north)--(lr.south);
+\draw[arr,rcorange] (khat.west)--(lr.east);
+\draw[grad,rcorange] (lr.north)--(107,82)--(frgroup.west);
+
+% Signed interaction and recovery shares couple here, rather than form a chain.
+\node[op,draw=rcgreen,line width=1pt,minimum size=9mm] (allocationproduct) at (90,25) {$\odot$};
+\node[op,draw=rcgreen,line width=1pt,minimum size=7mm] (allocsum) at (90,10) {$\sum$};
+\draw[arr,rcpurple] (coeff.east)--(80,50.5)--(80,25)--(allocationproduct.west);
+\draw[arr,rcorange] (alpha.west)--(101,33)--(101,25)--(allocationproduct.east);
+\draw[arr,rcgreen] (allocationproduct.south)--(allocsum.north);
+\node[tensor,draw=rcgreen,fill=rcgreen!8,minimum width=12mm] (psi) at (111,10) {$\widehat\psi_i$};
+\draw[arr,rcgreen] (allocsum.east)--(psi.west);
+\node[lab,text=rcgreen] at (90,40) {$\widehat\alpha_{iT}\,c_T$};
+\draw[rcpurple,line width=.85pt] (80,25)--(80,2)--(128,2)--(128,10);
+\fill[rcpurple] (80,25) circle (.6mm);
+\node[lab,text=rcpurple] at (121,5) {$c_T$};
+\node[tensor,trapezium,trapezium left angle=75,trapezium right angle=105,
+ draw=rcgreen,minimum width=22mm,minimum height=9mm] (alns) at (152,10) {ALNS};
+\draw[arr,rcgreen] (psi.east)--(alns.west);
+\fill[rcgreen] (128,10) circle (.6mm);
+\node[op,draw=rcgreen,minimum size=7mm] (check) at (175,10) {$\checkmark$};
+\draw[arr,rcgreen] (alns.east)--(check.west);
+\node[lab] (physicalcheck) at (154,22) {$\mathcal F,\;J(P';q)$};
+\draw[arr,rcgray] (physicalcheck.south)--(154,17)--(175,17)--(check.north);
+\node[lab] (bestplan) at (173,20) {$P^{\rm best}$};
+\draw[arr,rcgreen] (check.east)--(180,10)--(180,20)--(bestplan.east);
+\node[ttl] at (157,2.7) {(d) Verified search};
+% Literature contrasts retain the same context and sharing semantics as the modules.
+\node[draw=rcblue!35,fill=rcblue!5,rounded corners=1mm,
+ minimum width=88mm,minimum height=10mm,inner sep=1.2mm,align=center]
+ at (44,-8) {Different from GraphSVX [21]:\\fixed plan context across coalition masks};
+\node[draw=rcorange!35,fill=rcorange!5,rounded corners=1mm,
+ minimum width=88mm,minimum height=10mm,inner sep=1.2mm,align=center]
+ at (136,-8) {Different from Shapley [26]:\\recovery-specific interaction shares};
+\end{tikzpicture}

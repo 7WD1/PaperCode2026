@@ -1,0 +1,123 @@
+% Reported 20-node case. Positions, roads, access arrows, and coverage footprints
+% are schematic. Only the supplied N3--N7--N12 communication edges are drawn.
+% The right-hand comparison uses matched energy readings at t=4 h.
+\begin{tikzpicture}[x=1mm,y=1mm,>=Latex,
+ font=\sffamily\fontsize{9.5}{10.7}\selectfont,
+ title/.style={font=\sffamily\bfseries\fontsize{10}{11}\selectfont,anchor=west},
+ note/.style={align=center,inner sep=.5mm},
+ critical/.style={circle,draw,line width=.9pt,minimum size=8.4mm,inner sep=0pt,fill=white},
+ route/.style={circle,draw,line width=.8pt,minimum size=7.5mm,inner sep=0pt,fill=white},
+ arr/.style={->,line width=.85pt}, comm/.style={line width=1.25pt},
+ access/.style={->,densely dashed,line width=.95pt}]
+\definecolor{rcorange}{HTML}{D55E00}
+\definecolor{rcblue}{HTML}{0072B2}
+\definecolor{rcgreen}{HTML}{009E73}
+\definecolor{rcpurple}{HTML}{7B52AB}
+\definecolor{rcgray}{HTML}{58636D}
+\definecolor{rcred}{HTML}{BE3A34}
+\path[use as bounding box] (0,0) rectangle (182,108);
+\fill[white] (0,0) rectangle (182,108);
+\fill[rcblue!2] (0,23)--(0,99)--(102,99)--(102,23)--cycle;
+\draw[rcgray!25,line width=.5pt] (104,4)--(104,105) (107,49)--(180,49);
+\node[title] at (2,103) {(a) Spatial service and communication};
+\node[note,text=rcgray] at (51,94) {20 sensors; only the reported path is drawn};
+
+% Perspective campus. The oblique basis is explicit, so the drawing stays editable.
+\begin{scope}[shift={(41,25)},x={(.68mm,.18mm)},y={(-.45mm,.35mm)},z={(0mm,.8mm)}]
+ % Ground plinth, grid, and two demonstration roads; no recorded coordinates.
+ \fill[rcblue!9] (0,0,0)--(90,0,0)--(90,80,0)--(0,80,0)--cycle;
+ \fill[rcblue!18] (0,0,0)--(90,0,0)--(90,0,-3)--(0,0,-3)--cycle;
+ \fill[rcblue!12] (90,0,0)--(90,80,0)--(90,80,-3)--(90,0,-3)--cycle;
+ \foreach \u in {0,15,...,90}{\draw[white,line width=.4pt] (\u,0,0)--(\u,80,0);}
+ \foreach \v in {0,10,...,80}{\draw[white,line width=.4pt] (0,\v,0)--(90,\v,0);}
+ \fill[rcgray!17] (0,11,0)--(90,11,0)--(90,19,0)--(0,19,0)--cycle;
+ \fill[rcgray!17] (0,63,0)--(90,63,0)--(90,70,0)--(0,70,0)--cycle;
+ \fill[rcgray!17] (43,0,0)--(51,0,0)--(51,80,0)--(43,80,0)--cycle;
+ \draw[white,densely dashed,line width=.65pt] (0,15,0)--(90,15,0) (0,66.5,0)--(90,66.5,0) (47,0,0)--(47,80,0);
+ % Translucent schematic coverage footprints, not measured radio ranges.
+ \foreach \u/\v/\col in {18/37/rcblue,47/43/rcorange,78/40/rcgreen}{
+   \fill[\col!7] (\u,\v,0) circle[radius=12];
+   \draw[\col!55,densely dashed,line width=.6pt] (\u,\v,0) circle[radius=12];
+ }
+ % Seventeen other sensors: positions schematic and unknown links omitted.
+ \foreach \u/\v in {2/0,31/7,60/0,89/25,6/28,32/29,62/27,88/36,7/48,17/58,62/56,88/6,13/74,32/75,46/79,3/62,25/68}{
+  \draw[rcgray!55,line width=.65pt] (\u,\v,0)--(\u,\v,5);
+  \filldraw[fill=rcgray!18,draw=rcgray!65,line width=.55pt] (\u,\v,5) circle[radius=1.25mm];
+ }
+ % The three critical sensors rise above their projected ground positions.
+ \foreach \name/\u/\v/\zz/\col in {n3/18/37/16/rcblue,n7/47/43/21/rcorange,n12/78/40/18/rcgreen}{
+  \coordinate (\name ground) at (\u,\v,0);
+  \coordinate (\name top) at (\u,\v,\zz);
+  \draw[\col!45,densely dotted,line width=.65pt] (\name ground)--(\name top);
+  \fill[\col!50] (\name ground) circle[radius=1.2mm];
+ }
+ % Three charger stops on the schematic road.
+ \coordinate (C1) at (20,15,3);
+ \coordinate (C2) at (47,15,3);
+ \coordinate (C3) at (76,15,3);
+ % Short road-direction arrows are schematic movement cues, not recorded routes.
+ \draw[arr,rcgray!70] (2,15,1)--(11,15,1);
+ \draw[arr,rcgray!70] (55,66.5,1)--(68,66.5,1);
+\end{scope}
+
+% Known communication is an undirected dependency, unlike directed charging access.
+\node[critical,draw=rcblue] (N3) at (n3top) {$N_3$};
+\node[critical,draw=rcorange,fill=rcorange!10,line width=1.15pt] (N7) at (n7top) {$N_7$};
+\node[critical,draw=rcgreen] (N12) at (n12top) {$N_{12}$};
+\draw[comm,rcpurple] (N3.north east) to[bend left=13] (N7.north west);
+\draw[comm,rcpurple] (N7.north east) to[bend left=11] (N12.north west);
+\node[note,text=rcorange] at (59,81) {critical relay};
+\draw[arr,rcorange!85] (59,77.5)--(N7.north);
+
+% Editable three-dimensional charger glyphs at the projected road stops.
+\foreach \name/\col/\idx in {C1/rcblue/1,C2/rcorange/2,C3/rcgreen/3}{
+ \filldraw[fill=\col!10,draw=\col,line width=.75pt]
+  ($ (\name)+(-4.7,-3) $)--($ (\name)+(4.7,-3) $)--($ (\name)+(4.7,2.8) $)--($ (\name)+(-4.7,2.8) $)--cycle;
+ \filldraw[fill=\col!23,draw=\col,line width=.65pt]
+  ($ (\name)+(-4.7,2.8) $)--($ (\name)+(-2.7,4.1) $)--($ (\name)+(6.7,4.1) $)--($ (\name)+(4.7,2.8) $)--cycle;
+ \filldraw[fill=\col!18,draw=\col,line width=.65pt]
+  ($ (\name)+(4.7,-3) $)--($ (\name)+(6.7,-1.7) $)--($ (\name)+(6.7,4.1) $)--($ (\name)+(4.7,2.8) $)--cycle;
+ \node[note] (\name label) at (\name) {$C_{\idx}$};
+ \fill[rcgray] ($ (\name)+(-2.5,-3) $) circle[radius=.65mm];
+ \fill[rcgray] ($ (\name)+(3,-3) $) circle[radius=.65mm];
+}
+\draw[access,rcblue] ($ (C1)+(0,4.4) $) to[out=105,in=260] (N3.south);
+\draw[access,rcorange] ($ (C2)+(0,4.4) $) to[out=95,in=265] (N7.south);
+\draw[access,rcgreen] ($ (C3)+(0,4.4) $) to[out=95,in=275] (N12.south);
+
+% Compact scientific legend, with separate communication and service semantics.
+\draw[comm,rcpurple] (3,17)--(13,17);
+\node[note,anchor=west] at (15,17) {reported communication};
+\draw[access,rcorange] (3,9)--(13,9);
+\node[note,anchor=west] at (15,9) {schematic charging access};
+\node[note,text=rcgray] at (51,2.8) {Roads, positions, and coverage footprints are schematic.};
+
+% Matched execution outcomes for the named path, not the unobserved full graph.
+\node[title] at (108,103) {(b) Matched execution at 4 h};
+\node[note,font=\sffamily\bfseries\fontsize{10}{11}\selectfont] at (143,91) {Standard Shapley};
+\node[critical,draw=rcblue] (b3off) at (117,77) {$N_3$};
+\node[critical,draw=rcgray,fill=rcgray,text=white] (b7off) at (143,77) {$N_7$};
+\node[critical,draw=rcgreen] (b12off) at (170,77) {$N_{12}$};
+% The explicit gaps show interrupted links; no connectivity is inferred elsewhere.
+\draw[rcred,line width=1.1pt,dash pattern=on 1.5mm off .85mm]
+ (b3off.east)--(127.6,77) (132.4,77)--(b7off.west)
+ (b7off.east)--(154.1,77) (158.9,77)--(b12off.west);
+\node[note] at (117,67) {50\%};
+\node[note,text=rcgray] at (143,67) {0\% (offline)};
+\node[note] at (170,67) {40\%};
+\node[note,text=rcred,font=\sffamily\bfseries\fontsize{10}{11}\selectfont] at (143,57) {Path interrupted};
+
+\node[note,font=\sffamily\bfseries\fontsize{10}{11}\selectfont] at (143,42) {RC-ShapleyNet};
+\node[critical,draw=rcblue] (b3rc) at (117,30) {$N_3$};
+\node[critical,draw=rcgreen,fill=rcgreen!12,line width=1.15pt] (b7rc) at (143,30) {$N_7$};
+\node[critical,draw=rcgreen] (b12rc) at (170,30) {$N_{12}$};
+\draw[comm,rcgreen] (b3rc.east)--(b7rc.west) (b7rc.east)--(b12rc.west);
+\node[note] at (117,20) {50\%};
+\node[note,text=rcgreen!75!black] at (143,20) {22\%};
+\node[note] at (170,20) {40\%};
+\node[note,text=rcgreen!85!black,font=\sffamily\bfseries\fontsize{10}{11}\selectfont] at (143,10.5) {Path maintained};
+\node[note,text=rcgray] at (143,3.8) {$C_2$ serves $N_7$};
+\end{tikzpicture}
+
+
+

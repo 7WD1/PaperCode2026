@@ -1,0 +1,1709 @@
+{
+  "constructed": true,
+  "description": "Small executable pipeline check, not a benchmark dataset or published performance result.",
+  "num_locations": 1,
+  "mask_count": 4,
+  "model": {
+    "hidden_dim": 128,
+    "layers": 2,
+    "order": 2
+  },
+  "training": {
+    "epochs": 2,
+    "patience": 2,
+    "batch_size": 4,
+    "seed": 1
+  },
+  "training_pools": [
+    {
+      "scenario": {
+        "domain": "EV",
+        "locations": [
+          {
+            "id": "r",
+            "x": 0,
+            "y": 0,
+            "depot": false
+          }
+        ],
+        "chargers": [
+          {
+            "id": "A",
+            "initial_location": "r",
+            "initial_energy": 7,
+            "capacity": 7,
+            "max_power": 1,
+            "speed_mps": 1,
+            "energy_per_metre": 0.0001,
+            "auxiliary_kw": 0.0,
+            "receiver_efficiency": 1,
+            "depot_power": 0.0,
+            "reserve_energy": 0.0,
+            "ports": 1
+          },
+          {
+            "id": "B",
+            "initial_location": "r",
+            "initial_energy": 4,
+            "capacity": 4,
+            "max_power": 1,
+            "speed_mps": 1,
+            "energy_per_metre": 0.0001,
+            "auxiliary_kw": 0.0,
+            "receiver_efficiency": 1,
+            "depot_power": 0.0,
+            "reserve_energy": 0.0,
+            "ports": 1
+          }
+        ],
+        "recipients": [
+          {
+            "id": "r",
+            "location_id": "r",
+            "arrival": 0,
+            "departure": 8,
+            "demand": 8,
+            "initial_energy": 0,
+            "capacity": 8,
+            "load": [],
+            "source_proxy": false,
+            "initial_soc_proxy": 0.0,
+            "weekday": 0,
+            "sensing_radius": 10.0,
+            "location_index": 0
+          }
+        ],
+        "horizon": 8,
+        "step_seconds": 3600,
+        "simulation_seed": 10001,
+        "scenario_id": "constructed-training",
+        "tasks": [],
+        "road_distance": {},
+        "road_slots": {},
+        "communication_edges": [],
+        "required_paths": [],
+        "transfer_curve": [
+          [
+            0.0,
+            0.8
+          ],
+          [
+            5.0,
+            0.4
+          ],
+          [
+            10.0,
+            0.0
+          ]
+        ],
+        "coverage_points": [],
+        "energy_reference": 1000.0,
+        "allow_simultaneous_depot_service": false,
+        "return_deadline": null,
+        "committed_prefixes": [],
+        "safe_locations": {},
+        "clock_offset_seconds": 0.0
+      },
+      "plans": [
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 2,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 3,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 2,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 3,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 7,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 7,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 2,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 2,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 7,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 7,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 7,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 7,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 2,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 3,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 2,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 3,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "validation_pools": [
+    {
+      "scenario": {
+        "domain": "EV",
+        "locations": [
+          {
+            "id": "r",
+            "x": 0,
+            "y": 0,
+            "depot": false
+          }
+        ],
+        "chargers": [
+          {
+            "id": "A",
+            "initial_location": "r",
+            "initial_energy": 6,
+            "capacity": 7,
+            "max_power": 1,
+            "speed_mps": 1,
+            "energy_per_metre": 0.0001,
+            "auxiliary_kw": 0.0,
+            "receiver_efficiency": 1,
+            "depot_power": 0.0,
+            "reserve_energy": 0.0,
+            "ports": 1
+          },
+          {
+            "id": "B",
+            "initial_location": "r",
+            "initial_energy": 4,
+            "capacity": 4,
+            "max_power": 1,
+            "speed_mps": 1,
+            "energy_per_metre": 0.0001,
+            "auxiliary_kw": 0.0,
+            "receiver_efficiency": 1,
+            "depot_power": 0.0,
+            "reserve_energy": 0.0,
+            "ports": 1
+          }
+        ],
+        "recipients": [
+          {
+            "id": "r",
+            "location_id": "r",
+            "arrival": 0,
+            "departure": 8,
+            "demand": 8,
+            "initial_energy": 0,
+            "capacity": 8,
+            "load": [],
+            "source_proxy": false,
+            "initial_soc_proxy": 0.0,
+            "weekday": 0,
+            "sensing_radius": 10.0,
+            "location_index": 0
+          }
+        ],
+        "horizon": 8,
+        "step_seconds": 3600,
+        "simulation_seed": 10002,
+        "scenario_id": "constructed-validation",
+        "tasks": [],
+        "road_distance": {},
+        "road_slots": {},
+        "communication_edges": [],
+        "required_paths": [],
+        "transfer_curve": [
+          [
+            0.0,
+            0.8
+          ],
+          [
+            5.0,
+            0.4
+          ],
+          [
+            10.0,
+            0.0
+          ]
+        ],
+        "coverage_points": [],
+        "energy_reference": 1000.0,
+        "allow_simultaneous_depot_service": false,
+        "return_deadline": null,
+        "committed_prefixes": [],
+        "safe_locations": {},
+        "clock_offset_seconds": 0.0
+      },
+      "plans": [
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 2,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 3,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 2,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 3,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 7,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 7,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 2,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 2,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 7,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 7,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 7,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 7,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "routes": [
+            {
+              "charger_id": "A",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 0,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 1,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 2,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 3,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 0,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 1,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 2,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 3,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            },
+            {
+              "charger_id": "B",
+              "arcs": [
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 0,
+                  "end": 1
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 1,
+                  "end": 2
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 2,
+                  "end": 3
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 3,
+                  "end": 4
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 4,
+                  "end": 5
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 5,
+                  "end": 6
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 6,
+                  "end": 7
+                },
+                {
+                  "origin": "r",
+                  "destination": "r",
+                  "start": 7,
+                  "end": 8
+                }
+              ],
+              "services": [
+                {
+                  "recipient_id": "r",
+                  "slot": 4,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 5,
+                  "energy": 1
+                },
+                {
+                  "recipient_id": "r",
+                  "slot": 6,
+                  "energy": 1
+                }
+              ],
+              "powers": [
+                {
+                  "slot": 4,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 5,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                },
+                {
+                  "slot": 6,
+                  "output_energy": 1,
+                  "depot_energy": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
